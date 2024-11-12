@@ -1,0 +1,82 @@
+{
+    "version": 1,
+    "type": "ai-action",
+    "info": {
+        "name": "Bounding box labeling with OWL-ViT",
+        "description": "Zero-shot object detector to automatically label objects using bounding boxes with OWL-ViT. To detect more complex objects you can combine this block with 'Bounding box re-labeling with GPT-4o'. First, roughly find objects using this block, then re-label (or remove) bounding boxes using the GPT4o block.",
+        "requiredEnvVariables": [
+            "BEAM_ENDPOINT",
+            "BEAM_ACCESS_KEY"
+        ],
+        "operatesOn": [
+            "images_object_detection"
+        ]
+    },
+    "parameters": [
+        {
+            "name": "Prompt",
+            "value": "A person (person, 0.2)",
+            "type": "string",
+            "help": "A prompt specifying the images to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
+            "param": "prompt",
+            "multiline": true,
+            "placeholder": "A prompt specifying the images to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
+            "hint": "Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis (e.g. 'A person (person, 0.2)')."
+        },
+        {
+            "name": "Delete existing bounding boxes",
+            "value": "no",
+            "type": "select",
+            "valid": [
+                {
+                    "label": "No",
+                    "value": "no"
+                },
+                {
+                    "label": "Only if they match any labels in the prompt",
+                    "value": "matching-prompt"
+                },
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                }
+            ],
+            "param": "delete_existing_bounding_boxes"
+        },
+        {
+            "name": "Ignore objects smaller than (%)",
+            "optional": true,
+            "value": 0,
+            "type": "float",
+            "param": "ignore-objects-smaller-than",
+            "help": "Any objects where the area is smaller than X% of the whole image will be ignored"
+        },
+        {
+            "name": "Ignore objects larger than (%)",
+            "optional": true,
+            "value": 100,
+            "type": "float",
+            "param": "ignore-objects-larger-than",
+            "help": "Any objects where the area is larger than X% of the whole image will be ignored"
+        },
+        {
+            "name": "Non-max suppression",
+            "help": "Deduplicate boxes via non-max suppression (NMS)",
+            "value": "true",
+            "type": "flag",
+            "param": "nms"
+        },
+        {
+            "name": "NMS IoU threshold",
+            "help": "Threshold for non-max suppression",
+            "value": "0.2",
+            "type": "float",
+            "param": "nms-iou-threshold",
+            "showIf": {
+                "parameter": "nms",
+                "operator": "eq",
+                "value": "true"
+            }
+        }
+    ]
+}

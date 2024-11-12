@@ -1,0 +1,4 @@
+edgeimpulse-api==1.61.3
+numpy==2.1.1
+pillow==10.4.0
+requests==2.32.2

@@ -1,0 +1,7 @@
+models-cache/*
+.venv/*
+.ei-block-config
+.git/*
+edgeimpulse_api/api/__pycache__/*
+.venv-*/*
+__pycache__/
