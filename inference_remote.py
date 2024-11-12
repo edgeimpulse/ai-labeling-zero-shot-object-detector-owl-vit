@@ -144,6 +144,9 @@ else:
 
 print('')
 
+print('Note: it might take a minute to spin up a new GPU')
+print('')
+
 def current_ms():
     return round(time.time() * 1000)
 
@@ -206,10 +209,12 @@ for data_id in data_ids:
     bbs = []
     if delete_existing == 'no':
         bbs = sample.bounding_boxes
-    elif delete_existing:
+    elif delete_existing == 'matching-prompt':
         for bb in sample.bounding_boxes:
             if (not bb.label in labels_in_prompt):
                 bbs.append(bb)
+    elif delete_existing == 'yes':
+        bbs = [] # <-- clear out all bounding boxes
 
     prediction_per_label = {}
 
