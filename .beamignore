@@ -5,3 +5,5 @@ models-cache/*
 edgeimpulse_api/api/__pycache__/*
 .venv-*/*
 __pycache__/
+checkpoints/*
+run_inference_beam.sh

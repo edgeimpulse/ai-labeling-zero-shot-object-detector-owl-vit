@@ -5,3 +5,4 @@ data-ids.json
 load-keys.sh
 .venv-beam/
 images/
+checkpoints/

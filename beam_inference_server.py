@@ -1,3 +1,9 @@
+import os
+
+HF_HOME_DIR = './checkpoints'
+CACHE_DIR = './checkpoints/cache'
+
+os.environ['HF_HOME'] = HF_HOME_DIR
 
 from beam import Image, endpoint, Volume
 from transformers import pipeline
@@ -8,7 +14,7 @@ import base64
 # This function runs once when the container first starts
 def load_models():
     checkpoint = "google/owlv2-base-patch16-ensemble"
-    detector = pipeline(model=checkpoint, task="zero-shot-object-detection", device='cuda:0', cache_dir='/checkpoints')
+    detector = pipeline(model=checkpoint, task="zero-shot-object-detection", device='cuda:0', cache_dir=CACHE_DIR)
 
     return detector
 
@@ -29,7 +35,7 @@ def load_models():
     ),
     volumes=[
         # checkpoints is used to save fine-tuned models
-        Volume(name="checkpoints", mount_path="/checkpoints"),
+        Volume(name="owlv2-checkpoints", mount_path=HF_HOME_DIR),
     ],
     on_start=load_models,
     keep_warm_seconds=300

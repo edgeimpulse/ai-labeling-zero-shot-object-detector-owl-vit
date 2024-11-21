@@ -9,3 +9,4 @@ load-keys.sh
 ids.json
 run_inference_beam.sh
 .venv-*/
+checkpoints/
