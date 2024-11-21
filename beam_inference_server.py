@@ -15,7 +15,7 @@ def load_models():
 @endpoint(
     name="owlv2",
     cpu=1,
-    memory="16Gi",
+    memory="8Gi",
     gpu="T4",
     image=Image(
         python_version="python3.10",
@@ -32,7 +32,7 @@ def load_models():
         Volume(name="checkpoints", mount_path="/checkpoints"),
     ],
     on_start=load_models,
-    keep_warm_seconds=600
+    keep_warm_seconds=300
 )
 def predict_owlv2(context, base64_image, labels):
     detector = context.on_start_value
