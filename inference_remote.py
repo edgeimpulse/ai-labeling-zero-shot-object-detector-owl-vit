@@ -191,7 +191,7 @@ for data_id in data_ids:
         data=body
     )
     if (res.status_code != 200):
-        raise Exception('Failed to fetch sample from Edge Impulse (status_code=' + str(res.status_code) + '): ' + res.content.decode("utf-8"))
+        raise Exception('Failed to classify sample (status_code=' + str(res.status_code) + '): ' + res.content.decode("utf-8"))
 
     # print('res.content', res.content)
 
