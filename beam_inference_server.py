@@ -22,7 +22,7 @@ def load_models():
     name="owlv2",
     cpu=1,
     memory="8Gi",
-    gpu="T4",
+    gpu=["T4", "RTX4090"],
     image=Image(
         python_version="python3.10",
         python_packages=[
