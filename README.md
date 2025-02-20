@@ -1,18 +1,18 @@
-# AI Actions block: Zero-shot object detection labeling block (from HuggingFace)
+# AI labeling block: Zero-shot object detection labeling block (from HuggingFace)
 
-This is an Edge Impulse [AI Actions block](https://docs.edgeimpulse.com/docs/edge-impulse-studio/organizations/custom-blocks/transformation-blocks) that uses a zero-shot object detector ([OWL-ViT](https://huggingface.co/docs/transformers/en/model_doc/owlvit)) from HuggingFace to add bounding boxes to your image data. You can use this repo as the basis for custom tasks that use big ML models to help with labeling or data quality tasks in your project.
+This is an Edge Impulse [AI labeling block](https://docs.edgeimpulse.com/docs/edge-impulse-studio/organizations/custom-blocks/custom-ai-labeling-blocks) that uses a zero-shot object detector ([OWL-ViT](https://huggingface.co/docs/transformers/en/model_doc/owlvit)) from HuggingFace to add bounding boxes to your image data. You can use this repo as the basis for custom tasks that use big ML models to help with labeling or data quality tasks in your project.
 
 ## Use this from Edge Impulse (professional / enterprise)
 
-If you just want to use this block as a labeling tool in your Edge Impulse project you don't need this repo. Just go to any project, select **Data acquisition > AI Actions**, choose **Label objects using OWL-ViT** (available for professional and enterprise projects only).
+If you just want to use this block as a labeling tool in your Edge Impulse project you don't need this repo. Just go to any project, select **Data acquisition > AI Labeling**, choose **Bounding box using OWL-ViT** (available for professional and enterprise projects only).
 
 ## Combining this block w/ GPT4o
 
-It's hard to get complex objects or scenes to be labeled properly using zero-shot object detectors. To mitigate this you can combine zero-shot object detectors with an LLM, to verify that bounding boxes are correct, or to relabel them. See [llm-bounding-box-relabeling](https://github.com/edgeimpulse/llm-bounding-box-relabeling) on how to combine this block with GPT4o.
+It's hard to get complex objects or scenes to be labeled properly using zero-shot object detectors. To mitigate this you can combine zero-shot object detectors with an LLM, to verify that bounding boxes are correct, or to relabel them. See [ai-labeling-bounding-box-relabeling-gpt4o](https://github.com/edgeimpulse/ai-labeling-bounding-box-relabeling-gpt4o) on how to combine this block with GPT4o.
 
 ## Developing your own block
 
-Spinning up GPUs in Edge Impulse (required to run OWL-ViT) might take 5-15 minutes, which is not great for the user experience when labeling data. As OWL-ViT is not available through HuggingFace's Inference APIs we've deployed OWL-ViT using [Beam.cloud](https://www.beam.cloud) - a serverless infrastructure for GPUs, which can spin up much quicker. If the HuggingFace model you want to use _is_ available through HuggingFace's Serverless Inference API that's even easier. See [audio-autolabeling-transform-block](https://github.com/edgeimpulse/audio-autolabeling-transform-block) for an example.
+Spinning up GPUs in Edge Impulse (required to run OWL-ViT) might take 5-15 minutes, which is not great for the user experience when labeling data. As OWL-ViT is not available through HuggingFace's Inference APIs we've deployed OWL-ViT using [Beam.cloud](https://www.beam.cloud) - a serverless infrastructure for GPUs, which can spin up much quicker. If the HuggingFace model you want to use _is_ available through HuggingFace's Serverless Inference API that's even easier. See [ai-labeling-audio-spectrogram-transformer](https://github.com/edgeimpulse/ai-labeling-audio-spectrogram-transformer) for an example.
 
 ### 1. Deploying the inference server
 
@@ -104,7 +104,7 @@ If you've modified this block, you can push it back to Edge Impulse so it's avai
 
     > **Important:** The Beam endpoint changes between deploys. To later update the Beam endpoint, go to your Edge Impulse organization, then **Custom blocks > Transformation**, find the block, click the three dots, and override the endpoint under "Additional environment variables".
 
-3. Afterwards, you can run your block through **Data acquisition > AI Actions** in any Edge Impulse project.
+3. Afterwards, you can run your block through **Data acquisition > AI labeling** in any Edge Impulse project.
 
 ### Proposed changes
 
