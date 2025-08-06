@@ -20,7 +20,7 @@ def load_models():
 autoscaling_config = QueueDepthAutoscaler(
     max_containers=5,
     min_containers=0,
-    tasks_per_container=20,
+    tasks_per_container=1,
 )
 
 @endpoint(
