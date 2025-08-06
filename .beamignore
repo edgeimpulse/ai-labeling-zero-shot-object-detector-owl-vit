@@ -10,3 +10,4 @@ run_inference_beam.sh
 images/
 load-keys.sh
 .DS_Store
+weights/

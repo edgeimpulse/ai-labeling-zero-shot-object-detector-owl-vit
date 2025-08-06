@@ -6,3 +6,4 @@ load-keys.sh
 .venv-beam/
 images/
 checkpoints/
+weights/

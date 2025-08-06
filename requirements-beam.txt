@@ -1,4 +1,4 @@
-beam-client==0.2.125
+beam-client==0.2.163
 transformers==4.45.2
 torch==2.5.0
 pillow==11.0.0

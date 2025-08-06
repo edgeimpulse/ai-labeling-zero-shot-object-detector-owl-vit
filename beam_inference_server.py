@@ -5,7 +5,7 @@ CACHE_DIR = './checkpoints/cache'
 
 os.environ['HF_HOME'] = HF_HOME_DIR
 
-from beam import Image, endpoint, Volume
+from beam import Image, endpoint, Volume, QueueDepthAutoscaler
 from transformers import pipeline
 from PIL import Image as PILImage
 from io import BytesIO
@@ -17,6 +17,11 @@ def load_models():
     detector = pipeline(model=checkpoint, task="zero-shot-object-detection", device='cuda:0', cache_dir=CACHE_DIR)
 
     return detector
+
+autoscaling_config = QueueDepthAutoscaler(
+    max_containers=5,
+    tasks_per_container=30,
+)
 
 @endpoint(
     name="owlv2",
@@ -38,7 +43,8 @@ def load_models():
         Volume(name="owlv2-checkpoints", mount_path=HF_HOME_DIR),
     ],
     on_start=load_models,
-    keep_warm_seconds=300
+    keep_warm_seconds=300,
+    autoscaler=autoscaling_config
 )
 def predict_owlv2(context, base64_image, labels):
     detector = context.on_start_value
