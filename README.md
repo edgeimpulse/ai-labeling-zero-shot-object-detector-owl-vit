@@ -2,9 +2,9 @@
 
 This is an Edge Impulse [AI labeling block](https://docs.edgeimpulse.com/docs/edge-impulse-studio/organizations/custom-blocks/custom-ai-labeling-blocks) that uses a zero-shot object detector ([OWL-ViT](https://huggingface.co/docs/transformers/en/model_doc/owlvit)) from HuggingFace to add bounding boxes to your image data. You can use this repo as the basis for custom tasks that use big ML models to help with labeling or data quality tasks in your project.
 
-## Use this from Edge Impulse (professional / enterprise)
+## Use this from Edge Impulse
 
-If you just want to use this block as a labeling tool in your Edge Impulse project you don't need this repo. Just go to any project, select **Data acquisition > AI Labeling**, choose **Bounding box using OWL-ViT** (available for professional and enterprise projects only).
+If you just want to use this block as a labeling tool in your Edge Impulse project you don't need this repo. Just go to any project, select **Data acquisition > AI Labeling**, choose **Bounding box using OWL-ViT**.
 
 ## Combining this block w/ GPT4o
 
