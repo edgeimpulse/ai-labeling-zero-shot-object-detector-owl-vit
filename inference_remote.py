@@ -158,7 +158,18 @@ for data_id in data_ids:
     sample = (raw_data_api.get_sample(project_id=EI_PROJECT_ID, sample_id=data_id, proposed_actions_job_id=args.propose_actions)).sample
     prefix = '[' + str(ix).rjust(len(str(len(data_ids))), ' ') + '/' + str(len(data_ids)) + ']'
 
-    print(prefix, 'Labeling ' + sample.filename + ' (ID ' + str(sample.id) + ')...', end='')
+    if (sample.chart_type != 'image'):
+        print(prefix, f'Skipping {sample.filename} (ID {str(sample.id)}), not an image ({sample.chart_type})')
+
+        if args.propose_actions:
+            raw_data_api.set_sample_proposed_changes(project_id=EI_PROJECT_ID, sample_id=data_id, set_sample_proposed_changes_request={
+                'jobId': args.propose_actions,
+                'proposedChanges': { },
+            })
+
+        continue
+
+    print(prefix, f'Labeling {sample.filename} (ID {str(sample.id)})...', end='')
 
     new_metadata = sample.metadata if sample.metadata else { }
     new_metadata['labeled_by'] = 'owlv2'
