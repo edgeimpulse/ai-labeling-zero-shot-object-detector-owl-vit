@@ -40,7 +40,7 @@ autoscaling_config = QueueDepthAutoscaler(
     ),
     volumes=[
         # checkpoints is used to save fine-tuned models
-        Volume(name="owlv2-checkpoints", mount_path=HF_HOME_DIR),
+        Volume(name="owlv2-checkpoints-v2", mount_path=HF_HOME_DIR),
     ],
     on_start=load_models,
     keep_warm_seconds=300,
