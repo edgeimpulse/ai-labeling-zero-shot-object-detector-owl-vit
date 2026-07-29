@@ -17,10 +17,10 @@
             "name": "Prompt",
             "value": "A person (person, 0.2)",
             "type": "string",
-            "help": "A prompt specifying the images to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
+            "help": "A prompt specifying the objects to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
             "param": "prompt",
             "multiline": true,
-            "placeholder": "A prompt specifying the images to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
+            "placeholder": "A prompt specifying the objects to label. Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis.",
             "hint": "Separate multiple objects with a newline. You can specify the label and the min. confidence rating in the parenthesis (e.g. 'A person (person, 0.2)')."
         },
         {
